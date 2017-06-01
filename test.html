@@ -3,38 +3,35 @@
   <head>
     <meta charset="utf-8">
     <title>test</title>
+    <input type="text" placeholder="enter your access key here" class="js--key"><input type="button" value="apply" class="js--apply" />
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   </head>
   <body>
-    <input type="text" placeholder="enter your access key here" class="js--key"><input type="button" value="apply" class="js--apply" />
-<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-<form class="" action="index.html" method="post">
-  <input type="text" name="" value="">
-  <input type="button" name="" value="OK">
-  <input type="button" name="" value="OK">
-  <input type="button" name="" value="OK">
-  <input type="button" name="" value="OK">
-</form><br>
-<script>
+    <script>
 
 (function(){
-
   var url = 'https://api.gnavi.co.jp/RestSearchAPI/20150630/?callback=?';
   var params = {
     keyid: '',
     format: 'json',
-    latitude: 35.670083,
-    longitude: 139.763267,
+    latitude: 35.010348,
+    longitude: 135.768738,
     range: 1
   };
 
   var showResult = function(result){
     if ( result.total_hit_count > 0 ) {
       var res = '';
-      alert( result.total_hit_count + '件の結果が見つかりました。\n' );
+      var res2 = '';
+      var a = result.total_hit_count;
+      alert( a + '件の結果が見つかりました。\n' );
+      alert( result.hit_per_page + '件の結果が見つかりました。\n' );
       for ( var i in result.rest ){
-          res += result.rest[i].id + ' ' + result.rest[i].name + ' ' + result.rest[i].access.line + ' ' + result.rest[i].access.station + ' ' + result.rest[i].access.walk + '分\n';
+      //    res += result.rest[i].id + ' '+c+' '+ result.rest[i].name + ' ' + result.rest[i].access.line + ' ' + result.rest[i].access.station + ' ' + result.rest[i].access.walk + '分\n';
+          res2+='<a href='+result.rest[i].url+'>test'+i+'</a><br>';
       }
-      alert(res);
+    //  alert(res);
+      $('.test').html(res2);
     } else {
       alert( '検索結果が見つかりませんでした。' );
     }
@@ -50,6 +47,8 @@
 })(jQuery);
 
 </script>
-    <h1>test</h1>
+<div class="test">
+
+</div>
   </body>
 </html>
