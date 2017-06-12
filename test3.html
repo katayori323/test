@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <input type="text" placeholder="アクセスキー入力" class="js--key"><input type="button" value="apply" class="js--apply" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  </head>
+  <body>
+    <script>
+
+    /*
+      var api_key='10f59688fc27c9e0';
+    var rep =  'http://webservice.recrusit.co.jp/hotpepper/gourmet/v1/?key='+api_key+'&lat=34.67&lng=135.52&range=1&order=4&count=5&format=json';
+    console.log(rep);
+    var first = getUrlVars()[rep];
+    alert(firsts);
+    */
+  /*  var api_key='10f59688fc27c9e0';
+    var rep =  'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key='+api_key+'&lat=34.67&lng=135.52&range=1&order=4&count=5&format=json';
+    $.get(rep,function(data){
+      alert(data);
+    });*/
+    $(function () {
+      $('.js--apply').click(function (e) {
+          var api_key=$('.js--key').val();
+          var rep =  'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key='+api_key+'&lat=34.67&lng=135.52&range=1&order=4&count=5&format=jsonp';
+          $.ajax({
+      type:'GET',
+      url: rep,
+      dataType: 'jsonp',
+    //  async: false,
+      //data: data,
+      success: function (data) {
+        console.log(data);
+        for (var i = 0; i < data.results.shop.length; i++) {
+          alert(data.results.shop[i].name);
+
+        }
+
+      }
+    });
+      });
+
+
+      //  console.log(rep);
+
+
+  /*
+  $.getJSON(rep,null,function(data){
+    alert("ttt");
+  });
+  */
+    });
+    </script>
+  </body>
+</html>
