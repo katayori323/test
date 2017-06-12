@@ -24,7 +24,9 @@
     $(function () {
       $('.js--apply').click(function (e) {
           var api_key=$('.js--key').val();
-          var rep =  'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key='+api_key+'&lat=34.67&lng=135.52&range=1&order=4&count=5&format=jsonp';
+          var lat = 34.702485;
+          var lng = 135.495951;
+          var rep =  'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key='+api_key+'&lat='+lat+'&lng='+lng+'&range=1&order=4&count=10&format=jsonp';
           $.ajax({
       type:'GET',
       url: rep,
@@ -32,11 +34,14 @@
     //  async: false,
       //data: data,
       success: function (data) {
+        var res;
         console.log(data);
         for (var i = 0; i < data.results.shop.length; i++) {
-          alert(data.results.shop[i].name);
+          res +='<tr><td>'+data.results.shop[i].name+'</td><td>'+data.results.shop[i].open+
+          '</td><td>'+data.results.shop[i].genre.name+'</td></tr>';
 
         }
+        $('.test tbody > tr:last').after(res)
 
       }
     });
@@ -53,5 +58,21 @@
   */
     });
     </script>
+    <div class="test">
+      <table border="1">
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>time</th>
+            <th>genre</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>
