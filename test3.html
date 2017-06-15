@@ -29,7 +29,7 @@
               var res;
               console.log(data);
         for (var i = 0; i < data.results.shop.length; i++) {
-          res +='<tr><td>'+data.results.shop[i].id+'</td><td>'+data.results.shop[i].name+'</td><td>'+data.results.shop[i].open+
+          res +='<tr><td><img src='+data.results.shop[i].photo.pc.l+' alt="" width="" height="" border="0" /></td><td>'+data.results.shop[i].name+'</td><td>'+data.results.shop[i].open+
           '</td><td>'+data.results.shop[i].genre.name+'</td></tr>';
 
         }
@@ -44,13 +44,13 @@
         <div class="row">
           <input type="text" placeholder="アクセスキー入力" class="js--key"><input type="button" value="apply" class="js--apply btn btn-info" />
           <div class="table-responsive">
-            <table border="1" class="table table-hover">
+            <table border="1" class="table table-hover table-bordered table-striped">
               <thead>
                 <tr>
-                  <th class="col-xs-3 col-ms-3 col-md-2 col-lg-2">id</th>
-                  <th class="col-xs-3 col-ms-3 col-md-2 col-lg-2">name</th>
-                  <th class="col-xs-3 col-ms-3 col-md-4 col-lg-4">time</th>
-                  <th class="col-xs-3 col-ms-3 col-md-4 col-lg-4">genre</th>
+                  <th>id</th>
+                  <th>name</th>
+                  <th>time</th>
+                  <th>genre</th>
                 </tr>
               </thead>
               <tbody>
