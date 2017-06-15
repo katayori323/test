@@ -2,77 +2,65 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-    <input type="text" placeholder="アクセスキー入力" class="js--key"><input type="button" value="apply" class="js--apply" />
+     <!-- BootstrapのCSS読み込み -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery読み込み -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- BootstrapのJS読み込み -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
     <script>
-
-    /*
-      var api_key='10f59688fc27c9e0';
-    var rep =  'http://webservice.recrusit.co.jp/hotpepper/gourmet/v1/?key='+api_key+'&lat=34.67&lng=135.52&range=1&order=4&count=5&format=json';
-    console.log(rep);
-    var first = getUrlVars()[rep];
-    alert(firsts);
-    */
-  /*  var api_key='10f59688fc27c9e0';
-    var rep =  'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key='+api_key+'&lat=34.67&lng=135.52&range=1&order=4&count=5&format=json';
-    $.get(rep,function(data){
-      alert(data);
-    });*/
     $(function () {
       $('.js--apply').click(function (e) {
           var api_key=$('.js--key').val();
           var lat = 34.702485;
           var lng = 135.495951;
-          var rep =  'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key='+api_key+'&lat='+lat+'&lng='+lng+'&range=1&order=4&count=10&format=jsonp';
+          var rep =  'https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key='+api_key+'&lat='+lat+'&lng='+lng+'&range=1&order=4&count=10&format=jsonp';
           $.ajax({
-      type:'GET',
-      url: rep,
-      dataType: 'jsonp',
-    //  async: false,
-      //data: data,
-      success: function (data) {
-        var res;
-        console.log(data);
+              type:'GET',
+              url: rep,
+              dataType: 'jsonp',
+
+            success: function (data) {
+              var res;
+              console.log(data);
         for (var i = 0; i < data.results.shop.length; i++) {
-          res +='<tr><td>'+data.results.shop[i].name+'</td><td>'+data.results.shop[i].open+
+          res +='<tr><td>'+data.results.shop[i].id+'</td><td>'+data.results.shop[i].name+'</td><td>'+data.results.shop[i].open+
           '</td><td>'+data.results.shop[i].genre.name+'</td></tr>';
 
         }
         $('.test tbody > tr:last').after(res)
-
       }
     });
       });
-
-
-      //  console.log(rep);
-
-
-  /*
-  $.getJSON(rep,null,function(data){
-    alert("ttt");
-  });
-  */
     });
     </script>
-    <div class="test">
-      <table border="1">
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>time</th>
-            <th>genre</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-          </tr>
-        </tbody>
-      </table>
+    <div class="container-fluid">
+      <div class="test" class="container">
+        <div class="row">
+          <input type="text" placeholder="アクセスキー入力" class="js--key"><input type="button" value="apply" class="js--apply btn btn-info" />
+          <div class="table-responsive">
+            <table border="1" class="table table-hover">
+              <thead>
+                <tr>
+                  <th class="col-xs-3 col-ms-3 col-md-2 col-lg-2">id</th>
+                  <th class="col-xs-3 col-ms-3 col-md-2 col-lg-2">name</th>
+                  <th class="col-xs-3 col-ms-3 col-md-4 col-lg-4">time</th>
+                  <th class="col-xs-3 col-ms-3 col-md-4 col-lg-4">genre</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
